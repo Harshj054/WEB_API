@@ -376,7 +376,7 @@ nav {
     /* height: 1054px;  */
     height: 56%;
     overflow-y: scroll;
-    border: 1px solid #ccc;
+/*     border: 1px solid #ccc; */
     border-radius: 8px;
     padding: 10px;
 }
