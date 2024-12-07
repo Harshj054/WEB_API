@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Call with Fetch and Auth Header</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <script>
+
+        const apiKey = 'Y29hbGl0aW9uOnNraWxscy10ZXN0'; // Example API key
+        const apiUrl = 'https://fedskillstest.coalitiontechnologies.workers.dev'; // Your API endpoint
+
+
+        fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Basic ${apiKey}`,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(dataFromAPI => {
+                const namesList = document.getElementById('namesList');
+                console.log(dataFromAPI)
+
+                dataFromAPI.forEach((item, index) => {
+
+                    const itemDiv = document.createElement('div');
+                    itemDiv.style.display = 'flex';
+                    itemDiv.style.alignItems = 'center';
+                    itemDiv.style.width = '317px';
+                    itemDiv.style.height = '48px';
+                    itemDiv.style.marginBottom = '10px';
+                    itemDiv.style.padding = '5px';
+                    itemDiv.style.borderRadius = '8px';
+                    itemDiv.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)';
+
+                    itemDiv.id = `item-${index}`;
+
+                    itemDiv.addEventListener('click', () => {
+                        handleClick(item.id || index, dataFromAPI);
+                    });
+
+                    const imgElement = document.createElement('img');
+                    imgElement.src = item.profile_picture;
+                    imgElement.alt = 'Profile Picture';
+                    imgElement.style.width = '48px';
+                    imgElement.style.height = '48px';
+                    imgElement.style.borderRadius = '50%';
+                    imgElement.style.marginRight = '10px';
+
+                    const textDiv = document.createElement('div');
+                    textDiv.style.flex = '1';
+
+                    const nameElement = document.createElement('h4');
+                    nameElement.textContent = item.name;
+                    nameElement.style.margin = '0';
+                    nameElement.style.fontSize = '14px';
+                    nameElement.style.color = '#333';
+
+                    const genderAgeElement = document.createElement('p');
+                    genderAgeElement.textContent = `${item.gender}, ${item.age}`;
+                    genderAgeElement.style.margin = '0';
+                    genderAgeElement.style.fontSize = '12px';
+                    genderAgeElement.style.color = '#666';
+
+                    textDiv.appendChild(nameElement);
+                    textDiv.appendChild(genderAgeElement);
+
+
+                    itemDiv.appendChild(imgElement);
+                    itemDiv.appendChild(textDiv);
+
+
+                    namesList.appendChild(itemDiv);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                const namesList = document.getElementById('namesList');
+                namesList.innerHTML = '<li>Error fetching data from the API.</li>';
+            });
+
+
+
+        let bloodPressureChart; // Define a global variable to store the chart instance
+        function handleClick(id, dataFromAPI) {
+            console.log('Clicked item id:', id);
+
+
+
+            document.getElementById("myImage").setAttribute("src", dataFromAPI[id].profile_picture);
+            document.getElementById("name_user").textContent = dataFromAPI[id].name;
+
+            document.getElementById("cal_logo").setAttribute("src", 'img/BirthIcon.svg');
+            document.getElementById("cal_title").textContent = "Date Of Birth";
+            document.getElementById("cal_data").textContent = dataFromAPI[id].date_of_birth;
+
+            document.getElementById("gender").setAttribute("src", 'img/FemaleIcon.svg');
+            document.getElementById("gender_title").textContent = "Gender";
+            document.getElementById("gender_data").textContent = dataFromAPI[id].gender;
+
+            document.getElementById("call1").setAttribute("src", 'img/PhoneIcon.svg');
+            document.getElementById("call1_title").textContent = "Date Of Birth";
+            document.getElementById("call1_data").textContent = dataFromAPI[id].phone_number;
+
+
+            document.getElementById("call2").setAttribute("src", 'img/PhoneIcon.svg');
+            document.getElementById("call2_title").textContent = "Emergency Contacts";
+            document.getElementById("call2_data").textContent = dataFromAPI[id].emergency_contact;
+
+
+            document.getElementById("insurance").setAttribute("src", 'img/InsuranceIcon.svg');
+            document.getElementById("insurance_title").textContent = "Insurance Provider";
+            document.getElementById("insurance_data").textContent = dataFromAPI[id].insurance_type;
+
+
+            document.getElementById("Show_All_Information").textContent = "Show All Information";
+
+            const diagnosticContainer = document.getElementById('diagnosticContainer');
+            const diagnosticList = dataFromAPI[id].diagnostic_list;
+
+
+            diagnosticContainer.innerHTML = '';
+
+            if (diagnosticList && diagnosticList.length > 0) {
+                diagnosticList.forEach((item) => {
+
+                    const itemDiv = document.createElement('div');
+                    itemDiv.style.marginBottom = '10px';
+                    itemDiv.style.display = 'flex';
+                    itemDiv.style.justifyContent = "space-evenly";
+                    itemDiv.style.alignItems = 'center';
+
+                    const nameElement = document.createElement('p');
+                    nameElement.textContent = `${item.name}`;
+                    nameElement.style.margin = '0';
+                    nameElement.style.paddingRight = '32px';
+                    nameElement.style.flex = '1';
+
+
+                    const descriptionElement = document.createElement('p');
+                    descriptionElement.textContent = `${item.description}`;
+                    descriptionElement.style.margin = '0';
+                    descriptionElement.style.flex = '1';
+
+
+                    const statusElement = document.createElement('h4');
+                    statusElement.textContent = `${item.status}`;
+                    statusElement.style.marginLeft = '35px';
+                    statusElement.style.flex = '1';
+
+
+                    itemDiv.appendChild(nameElement);
+                    itemDiv.appendChild(descriptionElement);
+                    itemDiv.appendChild(statusElement);
+
+                    diagnosticContainer.appendChild(itemDiv);
+                });
+            }
+            const lab_result = document.getElementById('lab_results');
+            const lab_results = dataFromAPI[id].lab_results;
+            lab_result.innerHTML = '';
+
+            if (lab_results && lab_results.length > 0) {
+                lab_results.forEach((item) => {
+
+                    const div = document.createElement('div')
+                    div.style.display = 'flex';
+                    div.style.justifyContent = 'space-between';
+                    div.style.alignItems = 'center';
+                    div.style.padding = '5px 0';
+
+                    const rst = document.createElement('p')
+                    rst.textContent = `${item}`;
+                    rst.style.paddingLeft = '16px'
+                    rst.style.paddingTop = '6px'
+                    // rst.style.paddingBottom='5px'
+
+                    const img = document.createElement('img')
+                    img.src = ("img/download_FILL0_wght300_GRAD0_opsz24 (1).svg");
+                    // img.style.display='flex';
+                    // img.style.justifyContent='space-between';
+
+                    div.appendChild(rst);
+                    div.appendChild(img);
+                    lab_result.appendChild(div);
+                });
+            }
+
+            const diagnosisHistory = dataFromAPI[id].diagnosis_history;
+
+            // Extract blood pressure data and month-year labels
+            const labels = [];
+            const systolicData = [];
+            const diastolicData = [];
+
+            if (diagnosisHistory && diagnosisHistory.length > 0) {
+                diagnosisHistory.forEach((entry) => {
+                    labels.push(`${entry.month}, ${entry.year}`);
+                    systolicData.push(entry.blood_pressure.systolic.value);
+                    diastolicData.push(entry.blood_pressure.diastolic.value);
+                    document.getElementById('Systolic').textContent = "Systolic";
+                    document.getElementById('Diastolic').textContent = "Diastolic";
+                    document.getElementById('high').textContent = entry.blood_pressure.systolic.value;
+                    document.getElementById('low').textContent = entry.blood_pressure.diastolic.value;
+                    document.getElementById('Heart_Rate').textContent = entry.heart_rate.value+" bpm";
+                    document.getElementById('Heart_level').textContent = entry.heart_rate.levels;
+                    document.getElementById('Temperature').textContent = entry.respiratory_rate.value+" °F";
+                    document.getElementById('Temperature_level').textContent = entry.respiratory_rate.levels;
+                    document.getElementById('Respiratory_Rate').textContent = entry.temperature.value+" bpm";
+                    document.getElementById('Respiratory_level').textContent = entry.temperature.levels;
+                });
+                
+                // Update the chart data
+                updateBloodPressureChart(labels, systolicData, diastolicData);
+            } else {
+                console.error('No diagnosis history available for the selected user.');
+            }
+        }
+
+        function updateBloodPressureChart(labels, systolicData, diastolicData) {
+            if (bloodPressureChart) {
+                // Update existing chart
+                bloodPressureChart.data.labels = labels;
+                bloodPressureChart.data.datasets[0].data = systolicData;
+                bloodPressureChart.data.datasets[1].data = diastolicData;
+                bloodPressureChart.update();
+            } else {
+                // Create a new chart if it doesn't exist
+                const ctx = document.getElementById('bloodPressureChart').getContext('2d');
+                bloodPressureChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'Systolic',
+                                data: systolicData,
+                                borderColor: '#FF69B4',
+                                backgroundColor: 'rgba(255, 105, 180, 0.2)',
+                                tension: 0.4,
+                            },
+                            {
+                                label: 'Diastolic',
+                                data: diastolicData,
+                                borderColor: '#9370DB',
+                                backgroundColor: 'rgba(147, 112, 219, 0.2)',
+                                tension: 0.4,
+                            },
+                        ],
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: {
+                                position: '',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function (tooltipItem) {
+                                        const label = tooltipItem.dataset.label || '';
+                                        const value = tooltipItem.raw;
+                                        return `${label}: ${value}`;
+                                    },
+                                },
+                            },
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 180,
+                            },
+                        },
+                    },
+                });
+            }
+        }
+
+        // Example function to process the clicked item's id
+        function processClickedItem(id) {
+            // confirm(`You clicked on item with id: ${id}`);
+            // Add further logic to handle the clicked item
+        }
+    </script>
+
+
+    <nav class="topnav">
+        <div class="logo"></div>
+        <a href="#" class="nav-item">
+            <span class="home_logo"></span> Overview
+        </a>
+        <a href="#" class="nav-item">
+            <span class="Patients_logo"></span> Patients
+        </a>
+        <a href="#" class="nav-item">
+            <span class="Schedule_logo"></span> Schedule
+        </a>
+        <a href="#" class="nav-item">
+            <span class="Message_logo"></span> Message
+        </a>
+        <a href="#" class="nav-item">
+            <span class="Transactions_logo"></span> Transactions
+        </a>
+        <a href="#" class="dr_logo"></a>
+        <div class="dr_info">
+            <p>Dr. Jose Simmons</p>
+            <p>General Practitioner</p>
+        </div>
+        <a href="#" class="setting"></a>
+        <a href="#" class="three_dots"></a>
+    </nav>
+
+    <br>
+
+    <div class="container">
+        <div class="side_bar">
+            <div class="fst_search">
+                <h1 style="padding-left: 10px;">Patients</h1>
+                <a href="#">
+                    <img src="img/search_FILL0_wght300_GRAD0_opsz24.svg"
+                        style="padding-top: 25px; padding-right: 25px;width: 18px;height: 18px;" alt="">
+                </a>
+            </div>
+            <div class="fst_search">
+
+                <div id="namesList" style="height: 1010px; overflow-y: auto; border-radius: 8px; padding: 10px;"></div>
+
+            </div>
+        </div>
+        <div>
+            <div class="mid_box_one">
+                <h1 style="padding-left: 10px;">Diagnosis History</h1>
+                <div class="myChart">
+                    <h3 style="padding-left: 25px; padding-top: 12px;">Blood Pressure</h3>
+                    <div style="display: flex;">
+                        <div class="chart-container"
+                            style=" background-color:#F4F0FE   !important;position: relative;height:280px;width: 500px;">
+                            <canvas id="bloodPressureChart"></canvas>
+                        </div>
+                        <div class="BP_right">
+                            <span class="dot"></span>
+                            <span id="Systolic"></span>
+                            <h1 id="high">....</h1>
+                            <span>Higher than Average</span>
+                            <hr>
+                            <span class="dot" style="background-color: #8C6FE6 ;"></span>
+                            <span id="Diastolic"></span>
+                            <h1 id="low">....</h1>
+                            <span>Lower than Average</span>
+                        </div>
+                    </div>
+                    <!-- <div>test</div> -->
+                </div>
+                <div class="contain">
+                    <div class="card">
+                        <img src="img/respiratory rate.svg" alt="">
+                        <h4>Respiratory Rate</h4>
+                        <h3 id="Respiratory_Rate">....</h3>
+                        <h4 id="Respiratory_level">...</h4>
+                    </div>
+                    <div class="card" style="background: #FFE6E9 0% 0% no-repeat padding-box;">
+                        <img src="img/temperature.svg" alt="">
+                        <h4>Temperature</h4>
+                        <h3 id="Temperature">....</h3>
+                        <h4 id="Temperature_level">...</h4>
+                    </div>
+                    <div class="card" style="background: #FFE6F1 0% 0% no-repeat padding-box;">
+                        <img src="img/HeartBPM.svg" alt="">
+                        <h4>Heart Rate</h4>
+                        <h3 id="Heart_Rate">....</h3>
+                        <h4 id="Heart_level">...</h4>
+                    </div>
+                </div>
+               </div>
+            <div class="mid_box_two">
+                <div>
+                    <h1 style="padding: 25px;padding-bottom: 10px;">Diagnostic List</h1>
+                </div>
+                <div class="small_nav">
+                    <h3>Problem/Diagnosis</h3>
+                    <h3>Description</h3>
+                    <h3>Status</h3>
+                </div>
+                <div class="Scroll">
+                    <div id="diagnosticContainer"></div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="last_first">
+                <img src="" alt="Default Image" id="myImage"
+                    style="padding-left:84px;padding-top: 32px; width: 170px; height: 170px; opacity: 1; display: none;"
+                    onload="this.style.display='block'" onerror="this.style.display='none'">
+                <h1 id="name_user" style="padding-left: 101px;padding-top: 10px;width: 164px;
+            height: 33px;
+            font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-800) var(--unnamed-font-size-24)/var(--unnamed-line-spacing-33) var(--unnamed-font-family-manrope);
+            letter-spacing: var(--unnamed-character-spacing-0);
+            color: var(--unnamed-color-072635);
+            text-align: center;font: normal normal 800 24px/33px Manrope;
+            letter-spacing: 0px;
+            color: #072635;
+            opacity: 1;"></h1>
+                <div class="data_right">
+                    <img src="" class="r_logo" id="cal_logo" onload="this.style.display='block'"
+                        onerror="this.style.display='none'">
+                    <div class="data_right_row">
+                        <p id="cal_title"></p>
+                        <b id="cal_data"></b>
+                    </div>
+                </div>
+                <div class="data_right">
+                    <img src="" class="r_logo" id="gender" onload="this.style.display='block'"
+                        onerror="this.style.display='none'">
+                    <div class="data_right_row">
+                        <p id="gender_title"></p>
+                        <b id="gender_data"></b>
+                    </div>
+                </div>
+                <div class="data_right">
+                    <img src="" class="r_logo" id="call1" onload="this.style.display='block'"
+                        onerror="this.style.display='none'">
+                    <div class="data_right_row">
+                        <p id="call1_title"></p>
+                        <b id="call1_data"></b>
+                    </div>
+                </div>
+                <div class="data_right">
+                    <img src="" class="r_logo" id="call2" onload="this.style.display='block'"
+                        onerror="this.style.display='none'">
+                    <div class="data_right_row">
+                        <p id="call2_title"></p>
+                        <b id="call2_data"></b>
+                    </div>
+                </div>
+                <div class="data_right">
+                    <img src="" class="r_logo" id="insurance" onload="this.style.display='block'"
+                        onerror="this.style.display='none'">
+                    <div class="data_right_row">
+                        <p id="insurance_title"></p>
+                        <b id="insurance_data"></b>
+                    </div>
+                </div>
+
+                <a class="info_check" id="Show_All_Information"></a>
+            </div>
+            <div class="box_right2">
+                <h1 style="padding-top: 10px;padding-bottom: 10px; padding-left: 25px; ">Lab Results</h1>
+                <div styles="width: 100%; "></div>
+                <div class="Scroll3">
+                    <div id="lab_results">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,476 @@
+body {
+
+    /* Layout Properties */
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    /* UI Properties */
+    background: #F6F7F8 0% 0% no-repeat padding-box;
+    opacity: 1;
+
+}
+
+.logo {
+    top: 30px;
+    left: 50px;
+    width: 211px;
+    height: 48px;
+    background: transparent url('img/TestLogo.svg') 0% 0% no-repeat padding-box;
+    opacity: 1;
+    padding-left: 11%;
+}
+
+.dr_logo {
+    top: 32px;
+    left: 1309px;
+    width: 44px;
+    height: 44px;
+    margin-left: 150px;
+    background: transparent url('img/senior-woman-doctor-and-portrait-smile-for-health-2023-11-27-05-18-16-utc.png') 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.setting {
+    top: 44px;
+    left: 1515px;
+    width: 19px;
+    height: 20px;
+    margin-left: 20px;
+    /* UI Properties */
+    background: transparent url('img/settings_FILL0_wght300_GRAD0_opsz24.svg') 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.three_dots {
+    top: 45px;
+    left: 1546px;
+    width: 4px;
+    height: 18px;
+    margin-left: 15px;
+    /* UI Properties */
+    background: transparent url('img/more_vert_FILL0_wght300_GRAD0_opsz24.svg') 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.nav-item {
+    margin-right: 10px;
+    /* Optional: Add some space between each nav item */
+}
+
+nav {
+    top: 18px;
+    left: 18px;
+    height: 72px;
+    background: #FFFFFF;
+    border-radius: 70px;
+    opacity: 1;
+    overflow: hidden;
+    display: flex;
+    /* Aligns links in a row */
+    align-items: center;
+    /* Centers items vertically */
+    padding: 0 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.topnav a.nav-item {
+    display: flex;
+    /* Ensures the logo and text are inline */
+    align-items: center;
+    color: #000000;
+    text-decoration: none;
+    font-size: 17px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: background-color 0.3s, color 0.3s;
+    position: relative;
+}
+
+.topnav a.nav-item:hover {
+    background: #01F0D0;
+    /* Active state background */
+    color: #ffffff;
+    /* Text color on hover */
+    transition: all 0.3s ease-in-out;
+}
+
+.topnav a.nav-item:hover .home_logo {
+    filter: brightness(0) invert(1);
+    /* Inverts color for hover effect */
+}
+
+.dr_info {
+    display: flex;
+    flex-direction: column;
+    /* Stack items one below the other */
+    align-items: flex-start;
+    /* Align text to the left */
+    margin-left: 20px;
+    /* Add some space from the logo */
+    color: #333;
+    /* Text color */
+}
+
+.dr_info p {
+    margin: 0;
+    /* Remove default margin to avoid extra space */
+    font-size: 14px;
+    /* Adjust font size */
+}
+
+.dr_info p:first-child {
+    font-weight: bold;
+    /* Make the name bold */
+}
+
+.dr_info p:last-child {
+    font-style: italic;
+    /* Make the title italic */
+}
+
+.home_logo {
+    display: inline-block;
+    background: url('img/home_FILL0_wght300_GRAD0_opsz24.svg') center center no-repeat;
+    background-size: 16px;
+    /* Size of the icon */
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    /* Spacing between icon and text */
+}
+
+.Patients_logo {
+    display: inline-block;
+    background: url('img/group_FILL0_wght300_GRAD0_opsz24.svg') center center no-repeat;
+    background-size: 16px;
+    /* Size of the icon */
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    /* Spacing between icon and text */
+}
+
+.Schedule_logo {
+    display: inline-block;
+    background: url('img/calendar_today_FILL0_wght300_GRAD0_opsz24.svg') center center no-repeat;
+    background-size: 16px;
+    /* Size of the icon */
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    /* Spacing between icon and text */
+}
+
+.Message_logo {
+    display: inline-block;
+    background: url('img/chat_bubble_FILL0_wght300_GRAD0_opsz24.svg') center center no-repeat;
+    background-size: 16px;
+    /* Size of the icon */
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    /* Spacing between icon and text */
+}
+
+.Transactions_logo {
+    display: inline-block;
+    background: url('img/credit_card_FILL0_wght300_GRAD0_opsz24.svg') center center no-repeat;
+    background-size: 16px;
+    /* Size of the icon */
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    /* Spacing between icon and text */
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.container h1 {
+    top: 142px;
+    left: 437px;
+    width: 207px;
+    height: 33px;
+    /* UI Properties */
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-800) var(--unnamed-font-size-24)/var(--unnamed-line-spacing-33) var(--unnamed-font-family-manrope);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-072635);
+    text-align: left;
+    font: normal normal 800 24px/33px Manrope;
+    letter-spacing: 0px;
+    color: #072635;
+    opacity: 1;
+}
+
+.side_bar {
+    top: 122px;
+    left: 18px;
+    width: 367px;
+    height: 1054px;
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    background: #ffffff;
+    border-radius: 16px;
+    opacity: 1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.mid_box_one {
+    /* Layout Properties */
+    top: 115px;
+    left: 417px;
+    width: 766px;
+    height: 673px;
+    margin-left: 10px;
+    margin-right: 10px;
+    /* UI Properties */
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 16px;
+    opacity: 1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.last_first {
+    /* Layout Properties */
+    /* display: flex;
+    justify-content: center;
+    flex-direction: row; */
+    top: 108px;
+    left: 1216px;
+    width: 367px;
+    height: 740px;
+    /* UI Properties */
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 16px;
+    opacity: 1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.fst_search {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.img_api {
+    display: flex;
+    flex-direction: column;
+}
+
+.img_api img {
+    width: 100px;
+    /* Adjust image size as needed */
+    height: 100px;
+    /* Adjust image size as needed */
+}
+
+.namesList {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(0, 0, 0) white;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.info_check:empty {
+    display: none;
+}
+
+.info_check {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    width: 220px;
+    height: 41px;
+    background: #01F0D0 0% 0% no-repeat padding-box;
+    border-radius: 41px;
+    opacity: 1;
+    padding-top: 15px;
+    margin-left: 75px;
+    margin-top: 20px;
+}
+
+.r_logo {
+    margin-left: 20px;
+    /* margin-bottom: 40px; */
+    margin-top: 10px;
+}
+
+.data_right {
+    display: flex;
+}
+
+.data_right_row {
+    display: flex;
+    flex-direction: column;
+    padding-left: 25px;
+}
+
+.mid_box_two {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 766px;
+    height: 349px;
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.box_right2 {
+    margin-top: 20px;
+    width: 367px;
+    height: 293px;
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.small_nav {
+    background-color: #d0d1d2 !important;
+    border-radius: 16px;
+    /* color: var(--unnamed-color-072635); */
+    text-align: left;
+    height: 33px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    justify-content: flex-start;
+}
+
+.small_nav h3 {
+    margin: 0;
+    /* Remove default margin */
+    text-align: left;
+    margin-top: 3px;
+    /* Ensure text inside <h3> is aligned left */
+}
+
+.small_nav h3:first-child {
+    padding: 0 10px;
+    /* Padding for the first <h3> */
+}
+
+.small_nav h3:nth-child(2) {
+    padding: 0 100px;
+    /* Padding for the second <h3> */
+}
+
+.small_nav h3:last-child {
+    padding: 0 170px;
+    /* Padding for the third <h3> */
+}
+
+.Scroll {
+    /* height: 1054px;  */
+    height: 56%;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.Scroll3 {
+    /* height: 1054px;  */
+    height: 65%;
+    overflow-y: scroll;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.myChart {
+    top: 215px;
+    left: 437px;
+    /* UI Properties */
+    background: #F4F0FE 0% 0% no-repeat padding-box;
+    border-radius: 16px;
+    opacity: 1;
+    height: 330px;
+    width: 725px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.contain {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.contain div {
+    top: 533px;
+    left: 437px;
+    width: 200px;
+    height: 224px;
+    border-radius: 12px;
+    opacity: 1;
+    background: #E0F3FA 0% 0% no-repeat padding-box;
+    padding: 15px;
+}
+
+.Chartbox {
+    top: 215px;
+    left: 437px;
+    /* UI Properties */
+    background: #F4F0FE 0% 0% no-repeat padding-box;
+    border-radius: 16px;
+    opacity: 1;
+    height: 330px;
+    width: 725px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.myChart {
+    background-color: #F4F0FE !important;
+    height: 330px;
+    width: 725px;
+    overflow: hidden;
+
+}
+
+.chart-container {
+    background-color: #F4F0FE;
+    border-radius: 10px;
+}
+
+.dot {
+    padding-top: 1px;
+    background-color: #E66FD2;
+    border-radius: 50%;
+    display: inline-block;
+    top: 234px;
+    width: 14px;
+    height: 14px;
+    /* UI Properties */
+    border: 1px solid var(--unnamed-color-ffffff);
+    border: 1px solid #FFFFFF;
+
+}
+
+.BP_right span:nth-child(2) {
+    width: 55px;
+    height: 19px;
+    /* UI Properties */
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-14)/var(--unnamed-line-spacing-19) var(--unnamed-font-family-manrope);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-072635);
+    text-align: left;
+    font: normal normal bold 14px/19px Manrope;
+    letter-spacing: 0px;
+    color: #072635;
+    text-transform: capitalize;
+    opacity: 1;
+
+}
